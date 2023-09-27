@@ -1,0 +1,20 @@
+{% include 'sitio/header.html' %}
+
+<div class="row">
+    {% for registro in registros %}
+    <div class="col-md-3">
+       <div class="card">
+        <img class="card-img-top" src="/img/{{ registro[5] }}" alt="Title">
+        <div class="card-body">
+            <h4 class="card-title">{{ registro[1] }}</h4>
+            <p class="card-text"> 
+                <a name="" id="" class="btn btn-primary" href="" role="button">Descarga</a>
+            </p>
+        </div>
+       </div> 
+    </div>
+    {% endfor %}
+       
+</div>
+  
+{% include 'sitio/footer.html' %}

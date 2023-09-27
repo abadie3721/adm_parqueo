@@ -1,0 +1,90 @@
+{% include 'admin/header.html' %}
+<br/>
+     <div class="container">
+        <div class="row">
+            <div class="col-md-5">
+                <div class="card">
+                    <div class="card-header">
+                        Control de entrada y salida del vehiculo
+                    </div>
+                    <div class="card-body">
+                         <form action="/admin/registros/guardar" method="post" enctype="multipart/form-data">
+                            <div class="mb-3">
+                              <label for="txtMarca" class="form-label">Marca:</label>
+                              <input type="text" class="form-control" name="txtMarca" id="txtMarca" aria-describedby="helpId" placeholder="Escriba el nombre de la Marca del vehiculo"> 
+                            </div>
+                            <div class="mb-3">
+                                <label for="txtPlaca" class="form-label">Placa:</label>
+                                <input type="text" class="form-control" name="txtPlaca" id="txtPlaca" aria-describedby="helpId" placeholder="Escriba la serie de la placa del vehiculo"> 
+                              </div>
+                              <div class="mb-3">
+                                <label for="txtEntrada">Fecha de Entrada:</label>
+                                <input type="date" id="txtEntrada" name="txtEntrada" required><br>
+                            </div>
+                            <div class="mb-3">
+                                <label for="txtSalida">Fecha de Salida:</label>
+                                <input type="date" id="txtSalida" name="txtSalida" required><br>
+                            </div>
+                            <div class="mb-3">
+                            <label for="txtImagen" class="form-label">Imagen:</label>
+                            <input type="file"
+                              class="form-control" name="txtImagen" id="txtImagen" aria-describedby="helpId" placeholder="Seleccione la imagen">         
+                          </div>
+                           
+                          <button type="submit" class="btn btn-primary">Agregar</button>
+                         </form>
+                    </div>
+                    <div class="card-footer text-muted">
+                         
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-7">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Marca</th>
+                                <th scope="col">Placa</th>
+                                <th scope="col">Entrada</th>
+                                <th scope="col">Salida</th>
+                                <th scope="col">Imagen</th>
+                                <th scope="col">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for registro in registros %}
+                            <tr>
+                                <td>{{ registro[0] }}</td>
+                                <td>{{ registro[1] }}</td>
+                                <td>{{ registro[2] }}</td>
+                                <td>{{ registro[3] }}</td>
+                                <td>{{ registro[4] }}</td>
+                                <td>
+                                    <img width="60" src="/img/{{ registro[5] }}" class="img-fluid rounded-top" alt="">
+                                    
+                                </td>
+                                 
+                                <td>
+                                    <form action="/admin/registros/borrar" method="post">
+                                    <input value="{{ registro[0] }}" type="hidden" name="txtID" id="txtID">
+                                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody> 
+                    </table>
+                </div>
+                
+            </div>
+            
+        </div>
+     </div>
+
+   
+
+
+    
+{% include 'admin/footer.html' %}
